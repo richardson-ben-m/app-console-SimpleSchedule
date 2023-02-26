@@ -1,7 +1,7 @@
 
-$buildPath = "SimpleSchedule.UI\bin\Release\net7.0"
+$buildPath = "SimpleSchedule\bin\Release\net7.0"
 $releasePath = "$env:USERPROFILE\SimpleSchedule"
-$fileBase = "SimpleSchedule.UI"
+$fileBase = "SimpleSchedule"
 Write-Output "Releasing program from $buildPath to $releasePath"
 
 if (!(Test-Path $releasePath -PathType Container)) {
