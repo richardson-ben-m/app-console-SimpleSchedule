@@ -1,9 +1,20 @@
-﻿public class Startup
+﻿using Logic.Output;
+
+//namespace Logic;
+namespace SimpleSchedule;
+
+public class Startup
 {
-    public Startup(string[] args)
+    private ITextOutput _textOutput;
+
+    public Startup(ITextOutput textOutput)
     {
-        Console.WriteLine("Hello, World!");
-        Console.WriteLine("From Startup class");
-        Console.Read();
+        _textOutput = textOutput;
+    }
+
+    public void Run(string[] args)
+    {
+        _textOutput.WriteLine("Hello, World!");
+        _textOutput.WriteLine("From Startup class");
     }
 }
