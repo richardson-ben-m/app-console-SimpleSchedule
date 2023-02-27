@@ -14,6 +14,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommandFactory.cs" />
+    <Compile Remove="CommandType.cs" />
+    <Compile Remove="ICommand.cs" />
+    <Compile Remove="SaveCommand.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 

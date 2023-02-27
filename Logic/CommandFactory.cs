@@ -7,11 +7,15 @@ public class CommandFactory
 {
     /// <summary>
     /// Gets a Command object based on the given string.
+    /// Throws Argument Exception if the string is not a valid command name.
     /// </summary>
     /// <param name="command"></param>
     /// <returns></returns>
-    public Commands GetCommand(string command)
+    public ICommand? GetCommand(string command)
     {
-        return Commands.Save;
+        if (command.ToLower() == "save")
+            return new SaveCommand();
+
+        throw new ArgumentException($"Command {command} is not valid.");
     }
 }

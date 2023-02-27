@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CommandFactory.cs" />
+    <Compile Remove="CommandType.cs" />
+    <Compile Remove="ICommand.cs" />
+    <Compile Remove="SaveCommand.cs" />
     <Compile Remove="Startup.cs" />
   </ItemGroup>
 
@@ -18,7 +22,10 @@
     <Folder Include="Classes\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Input\" />
-    <Folder Include="Storage\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Tests" />
   </ItemGroup>
 
   <ItemGroup>
