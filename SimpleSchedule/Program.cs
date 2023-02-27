@@ -1,7 +1,5 @@
-﻿//Startup _ = new(args);
-
-//using Logic;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Input;
 using Output;
 using SimpleSchedule;
 
@@ -21,6 +19,8 @@ class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
-        services.RegisterOutput();
+        services
+            .RegisterInput()
+            .RegisterOutput();
     }
 }

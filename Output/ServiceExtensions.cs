@@ -6,7 +6,7 @@ public static class ServiceExtensions
 {
     public static IServiceCollection RegisterOutput(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddSingleton<ITextOutput>(new TextOutput());
+        serviceCollection.AddSingleton<IOutput>(new TextOutput());
         return serviceCollection;
     }
 }

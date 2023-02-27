@@ -1,20 +1,24 @@
-﻿using Logic.Output;
+﻿using Input;
+using Logic.Output;
 
-//namespace Logic;
 namespace SimpleSchedule;
 
 public class Startup
 {
-    private ITextOutput _textOutput;
+    private readonly IOutput _textOutput;
+    private readonly InputReaderBase _inputReader;
 
-    public Startup(ITextOutput textOutput)
+    public Startup(IOutput textOutput, InputReaderBase inputReader)
     {
         _textOutput = textOutput;
+        _inputReader = inputReader;
     }
 
     public void Run(string[] args)
     {
-        _textOutput.WriteLine("Hello, World!");
-        _textOutput.WriteLine("From Startup class");
+        _textOutput.OutputLineOfText("Welcome to the SimpleSchedule app.");
+        var command = _inputReader.ReadLine();
+        var factory = new CommandFactory();
+        factory.GetCommand(command!);
     }
 }
