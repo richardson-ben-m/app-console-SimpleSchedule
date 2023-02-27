@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSchedule", "SimpleSchedule\SimpleSchedule.csproj", "{83F6E88A-8CDB-49DA-A9BB-1BC5182B24E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleSchedule", "SimpleSchedule\SimpleSchedule.csproj", "{83F6E88A-8CDB-49DA-A9BB-1BC5182B24E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{20349B49-8703-4696-8B2A-D2B2CB70CC28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{20349B49-8703-4696-8B2A-D2B2CB70CC28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{B3C73AF5-84E5-4B29-94D6-0B95BCF21E75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{B3C73AF5-84E5-4B29-94D6-0B95BCF21E75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{8B377514-D59D-4CF0-991A-2CD652A311EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{8B377514-D59D-4CF0-991A-2CD652A311EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Output", "Output\Output.csproj", "{1C9334A7-6E0F-4D09-9CC2-9F6E420A47E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Output", "Output\Output.csproj", "{1C9334A7-6E0F-4D09-9CC2-9F6E420A47E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Input", "Input\Input.csproj", "{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1C9334A7-6E0F-4D09-9CC2-9F6E420A47E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C9334A7-6E0F-4D09-9CC2-9F6E420A47E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C9334A7-6E0F-4D09-9CC2-9F6E420A47E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
