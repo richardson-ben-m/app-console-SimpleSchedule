@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Output", "Output\Output.csproj", "{1C9334A7-6E0F-4D09-9CC2-9F6E420A47E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Input", "Input\Input.csproj", "{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Input", "Input\Input.csproj", "{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storage", "Storage\Storage.csproj", "{91B15C48-A229-4CFB-A1B1-B3721607B8AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01F5481F-A4F0-4E46-A4CB-3E6A8A1D07D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91B15C48-A229-4CFB-A1B1-B3721607B8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91B15C48-A229-4CFB-A1B1-B3721607B8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91B15C48-A229-4CFB-A1B1-B3721607B8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91B15C48-A229-4CFB-A1B1-B3721607B8AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

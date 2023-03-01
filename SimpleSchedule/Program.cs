@@ -2,6 +2,7 @@
 using Input;
 using Output;
 using SimpleSchedule;
+using Logic;
 
 class Program
 {
@@ -21,6 +22,8 @@ class Program
     {
         services
             .RegisterInput()
-            .RegisterOutput();
+            .RegisterOutput()
+            .RegisterStorage()
+            .RegisterLogic();
     }
 }
