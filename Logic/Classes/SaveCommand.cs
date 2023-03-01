@@ -7,19 +7,19 @@ public class SaveCommandOptions
 {
     public string Title { get; set; }
     public string? Description { get; set; }
-    public int DaysUntilReminder { get; set; }
+    public TimeSpan ReminderTimeSpan { get; set; }
 
-    public SaveCommandOptions(string title, int daysUntilReminder)
+    public SaveCommandOptions(string title, TimeSpan reminderTimeSpan)
     {
         Title = title;
-        DaysUntilReminder = daysUntilReminder;
+        ReminderTimeSpan = reminderTimeSpan;
     }
 }
 
 public class SaveCommand : ICommand
 {
-    public Schedule Execute(SaveCommandOptions options)
+    public Reminder Execute(SaveCommandOptions options)
     {
-        return new Schedule(options.Title) { Description = options.Description };
+        return new Reminder(options.Title, options.ReminderTimeSpan) { Description = options.Description };
     }
 }

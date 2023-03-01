@@ -5,5 +5,5 @@ namespace Logic.Interfaces;
 
 public interface ICommand
 {
-    Schedule Execute(SaveCommandOptions options);
+    Reminder Execute(SaveCommandOptions options);
 }

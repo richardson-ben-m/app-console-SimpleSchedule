@@ -2,7 +2,6 @@
 using Logic.Classes;
 using Logic.Interfaces;
 using Logic.Output;
-using Models;
 
 namespace SimpleSchedule;
 
@@ -23,6 +22,6 @@ public class Startup
     {
         _textOutput.OutputLineOfText("Welcome to the SimpleSchedule app.");
         _inputReader.ReadLine();
-        _command.Execute(new SaveCommandOptions("",0));
+        _command.Execute(new SaveCommandOptions("", new TimeSpan(days: 0, hours: 0, minutes: 0, seconds: 0)));
     }
 }
