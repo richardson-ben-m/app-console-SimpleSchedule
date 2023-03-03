@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="Input\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Input\Input.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 

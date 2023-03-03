@@ -1,9 +1,11 @@
-﻿namespace Input;
+﻿using Logic.Input;
+
+namespace Input;
 
 /// <summary>
 /// Wrapper class for Console.Read commands
 /// </summary>
-public sealed class InputReader : InputReaderBase
+internal sealed class UserTextInputHandler : UserInputHandlerBase
 {
     public override string? ReadLine()
     {

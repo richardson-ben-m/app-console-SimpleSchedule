@@ -1,4 +1,6 @@
-﻿using Logic.Interfaces;
+﻿using Logic.Input;
+using Logic.Interfaces;
+using Logic.Output;
 using Logic.Storage;
 using Models;
 
@@ -24,13 +26,22 @@ public class SaveCommandOptions
 /// Command object for saving a Reminder to the repository
 /// </summary>
 public class SaveCommand : ICommand
-//public class SaveCommand : ICommand<SaveCommandOptions, Reminder>
 {
     private readonly IReminderRepository _repository;
 
     public SaveCommand(IReminderRepository repository)
     {
         _repository = repository;
+    }
+
+    /// <summary>
+    /// Requests the user to enter Reminder options to save.
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public SaveCommandOptions GetOptionsFromUser(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>

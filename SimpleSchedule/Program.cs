@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         var services = new ServiceCollection();
         services
@@ -17,7 +17,7 @@ class Program
             .AddSingleton<Startup>()
             .BuildServiceProvider()
             .GetRequiredService<Startup>()
-            .Run(args);
+            .Run();
         Console.ReadLine();
     }
 

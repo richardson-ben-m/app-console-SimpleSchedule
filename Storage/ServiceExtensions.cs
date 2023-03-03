@@ -28,11 +28,8 @@ public static class ServiceExtensions
         var connectionName = "ReminderRepository";
 
         var connectionString = configuration.GetConnectionString(connectionName);
-        if (connectionString == null)
-            throw new ApplicationException($"Expected Connection String {connectionName} not found in Configuration");
-
-        var envs = Environment.GetEnvironmentVariables();
-
-        return $"{Environment.GetEnvironmentVariable("USERPROFILE")}/{connectionString}";
+        return connectionString == null
+            ? throw new ApplicationException($"Expected Connection String {connectionName} not found in Configuration")
+            : $"{Environment.GetEnvironmentVariable("USERPROFILE")}/{connectionString}";
     }
 }

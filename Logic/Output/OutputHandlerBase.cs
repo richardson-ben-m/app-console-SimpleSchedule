@@ -1,13 +1,13 @@
 ﻿namespace Logic.Output;
 
 /// <summary>
-/// Interface for basic data output.
+/// Base class for basic data output.
 /// </summary>
-public interface IOutput
+public abstract class OutputHandlerBase
 {
     /// <summary>
     /// Outputs a line of text.
     /// </summary>
     /// <param name="text"></param>
-    void OutputLineOfText(string text);
+    public abstract void OutputLineOfText(string text);
 }

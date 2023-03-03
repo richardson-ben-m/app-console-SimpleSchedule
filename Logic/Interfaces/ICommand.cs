@@ -1,13 +1,12 @@
 ﻿using Logic.Classes;
+using Logic.Input;
+using Logic.Output;
 using Models;
 
 namespace Logic.Interfaces;
 
-//public interface ICommand<in TIn, out TOut> where TIn : ICommandOptions where TOut : class
-//{
-//    TOut Execute(TIn options);
-//}
 public interface ICommand
 {
+    SaveCommandOptions GetOptionsFromUser(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler);
     Reminder Execute(SaveCommandOptions options);
 }
