@@ -21,7 +21,13 @@ public class Startup
     public void Run(string[] args)
     {
         _textOutput.OutputLineOfText("Welcome to the SimpleSchedule app.");
+        _textOutput.OutputLineOfText("Hit Enter and save a Reminder object to storage.");
         _inputReader.ReadLine();
-        _command.Execute(new SaveCommandOptions("", new TimeSpan(days: 0, hours: 0, minutes: 0, seconds: 0)));
+        var reminder = _command.Execute(new SaveCommandOptions("", new TimeSpan(days: 0, hours: 0, minutes: 0, seconds: 0)));
+        if (reminder == null) 
+        {
+            _textOutput.OutputLineOfText("Reminder Save failed!");
+        }
+        _textOutput.OutputLineOfText($"Object saved: {reminder}");
     }
 }

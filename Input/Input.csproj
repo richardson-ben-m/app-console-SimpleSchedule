@@ -11,14 +11,14 @@
 
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="CommandFactory.cs" />
-    <Compile Remove="CommandType.cs" />
-    <Compile Remove="ICommand.cs" />
-    <Compile Remove="SaveCommand.cs" />
-  </ItemGroup>
+  <PropertyGroup>
+    <WarningLevel>9999</WarningLevel>
+    <NoWarn />
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="Tests" />

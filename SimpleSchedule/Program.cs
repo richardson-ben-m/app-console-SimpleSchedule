@@ -3,12 +3,15 @@ using Input;
 using Output;
 using SimpleSchedule;
 using Logic;
+using Microsoft.Extensions.Configuration;
 
 class Program
 {
     static void Main(string[] args)
     {
         var services = new ServiceCollection();
+        services
+            .AddSingleton(BuildConfiguration());
         ConfigureServices(services);
         services
             .AddSingleton<Startup>()
@@ -16,6 +19,14 @@ class Program
             .GetRequiredService<Startup>()
             .Run(args);
         Console.ReadLine();
+    }
+
+    private static IConfiguration BuildConfiguration()
+    {
+        return new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddEnvironmentVariables()
+            .Build();
     }
 
     private static void ConfigureServices(IServiceCollection services)
