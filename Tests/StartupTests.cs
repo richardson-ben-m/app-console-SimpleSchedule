@@ -8,14 +8,14 @@ namespace Tests;
 public class StartupTests
 {
     private Mock<OutputHandlerBase> _textOutput;
-    private InputReaderMock _inputReader;
+    private UserInputHandlerMock _inputReader;
     private Mock<ICommand> _command;
 
     [SetUp]
     public void Setup()
     {
         _textOutput= new Mock<OutputHandlerBase>();
-        _inputReader= new InputReaderMock();
+        _inputReader= new UserInputHandlerMock();
         _command = new Mock<ICommand>();
     }
 

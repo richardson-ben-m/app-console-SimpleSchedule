@@ -41,7 +41,59 @@ public class SaveCommand : ICommand
     /// <exception cref="NotImplementedException"></exception>
     public SaveCommandOptions GetOptionsFromUser(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
     {
-        throw new NotImplementedException();
+        outputHandler.OutputLineOfText("Saving a Reminder:");
+
+        var title = GetTitle(outputHandler, inputHandler);
+        var description = GetDescription(outputHandler, inputHandler);
+        var timeSpanUnits = GetTimeSpanUnits(outputHandler, inputHandler);
+        var timeSpanValue = GetTimeSpan(timeSpanUnits, outputHandler, inputHandler);
+
+        TimeSpan timeSpan;
+        if (timeSpanUnits == "hours")
+            timeSpan = new TimeSpan(timeSpanValue, 0, 0);
+        else
+            timeSpan = new TimeSpan(timeSpanValue, 0, 0, 0);
+
+        return new SaveCommandOptions(title, timeSpan) { Description = description};
+    }
+
+    private static string GetTitle(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
+    {
+        outputHandler.OutputLineOfText("Title (required)? ");
+        var title = inputHandler.ReadLine();
+        if (title != null) return title;
+
+        outputHandler.OutputLineOfText("Title is Required! Try again.");
+        return GetTitle(outputHandler, inputHandler);
+    }
+
+    private static string? GetDescription(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
+    {
+        outputHandler.OutputLineOfText("Description (optional)? ");
+        return inputHandler.ReadLine();
+    }
+
+    private static string GetTimeSpanUnits(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
+    {
+        outputHandler.OutputLineOfText("Time unit to be reminded in (hours, days)? ");
+        var timeSpanInput = inputHandler.ReadLine();
+        var timeSpanUnit = timeSpanInput?.ToLowerInvariant();
+        if (timeSpanUnit == "hours" || timeSpanUnit == "days")
+            return timeSpanUnit;
+
+        outputHandler.OutputLineOfText("Time Unit valid values are: hours, days. Please try again.");
+        return GetTimeSpanUnits(outputHandler, inputHandler);
+    }
+
+    private static int GetTimeSpan(string timeSpanUnits, OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
+    {
+        outputHandler.OutputLineOfText($"Number of {timeSpanUnits} to be reminded in? ");
+        var timeSpanText = inputHandler.ReadLine();
+        var validTimeSpan = int.TryParse(timeSpanText, out var timeSpan);
+        if (validTimeSpan) return timeSpan;
+
+        outputHandler.OutputLineOfText("Valid Time Span value is an integer. Please try again.");
+        return GetTimeSpan(timeSpanUnits, outputHandler, inputHandler);
     }
 
     /// <summary>
