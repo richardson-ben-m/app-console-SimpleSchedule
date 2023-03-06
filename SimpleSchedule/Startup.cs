@@ -1,5 +1,4 @@
-﻿using Logic.Classes;
-using Logic.Input;
+﻿using Logic.Input;
 using Logic.Interfaces;
 using Logic.Output;
 
@@ -21,8 +20,8 @@ public class Startup
     public void Run()
     {
         _outputHandler.OutputLineOfText("Welcome to the SimpleSchedule app.");
-        _command.GetOptionsFromUser(_outputHandler, _inputHandler);
-        var reminder = _command.Execute(new SaveCommandOptions("", new TimeSpan(days: 0, hours: 0, minutes: 0, seconds: 0)));
+        var newReminderOptions = _command.GetOptionsFromUser(_outputHandler, _inputHandler);
+        var reminder = _command.Execute(newReminderOptions);
         if (reminder == null) 
         {
             _outputHandler.OutputLineOfText("Reminder Save failed!");
