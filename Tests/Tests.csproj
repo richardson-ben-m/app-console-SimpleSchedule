@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleSchedule\SimpleSchedule.csproj" />
+    <ProjectReference Include="..\Startup\Startup.csproj" />
   </ItemGroup>
 
   <ItemGroup>

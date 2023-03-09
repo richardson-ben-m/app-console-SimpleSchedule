@@ -1,4 +1,4 @@
-﻿namespace SimpleSchedule;
+﻿namespace Startup;
 
 public class Startup
 {
