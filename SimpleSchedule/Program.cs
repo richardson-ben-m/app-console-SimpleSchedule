@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Input;
-using Output;
-using SimpleSchedule;
+﻿using API;
 using Logic;
+using Storage;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using SimpleSchedule;
 
 class Program
 {
@@ -13,12 +13,12 @@ class Program
         services
             .AddSingleton(BuildConfiguration());
         ConfigureServices(services);
-        services
-            .AddSingleton<Startup>()
-            .BuildServiceProvider()
-            .GetRequiredService<Startup>()
-            .Run();
-        Console.ReadLine();
+        //services
+        //    .AddSingleton<Startup>()
+        //    .BuildServiceProvider()
+        //    .GetRequiredService<Startup>()
+        //    .Run();
+        Startup.Run();
     }
 
     private static IConfiguration BuildConfiguration()
@@ -33,7 +33,6 @@ class Program
     {
         services
             .RegisterInput()
-            .RegisterOutput()
             .RegisterStorage()
             .RegisterLogic();
     }

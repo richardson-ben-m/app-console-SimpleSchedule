@@ -20,26 +20,13 @@ public class SaveCommandOptions
         Title = title;
         ReminderTimeSpan = reminderTimeSpan;
     }
-}
-
-/// <summary>
-/// Command object for saving a Reminder to the repository
-/// </summary>
-public class SaveCommand : ICommand
-{
-    private readonly IReminderRepository _repository;
-
-    public SaveCommand(IReminderRepository repository)
-    {
-        _repository = repository;
-    }
 
     /// <summary>
     /// Requests the user to enter Reminder options to save.
     /// </summary>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public SaveCommandOptions GetOptionsFromUser(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
+    public static SaveCommandOptions GetOptionsFromUser(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
     {
         outputHandler.OutputLineOfText("Saving a Reminder:");
 
@@ -54,7 +41,7 @@ public class SaveCommand : ICommand
         else
             timeSpan = new TimeSpan(timeSpanValue, 0, 0, 0);
 
-        return new SaveCommandOptions(title, timeSpan) { Description = description};
+        return new SaveCommandOptions(title, timeSpan) { Description = description };
     }
 
     private static string GetTitle(OutputHandlerBase outputHandler, UserInputHandlerBase inputHandler)
@@ -96,15 +83,4 @@ public class SaveCommand : ICommand
         return GetTimeSpan(timeSpanUnits, outputHandler, inputHandler);
     }
 
-    /// <summary>
-    /// Method to save a <see cref="Reminder"/> to the repository
-    /// </summary>
-    /// <param name="options"></param>
-    /// <returns>The saved Reminder</returns>
-    public Reminder Execute(SaveCommandOptions options)
-    {
-        var reminder = new Reminder(options.Title, options.ReminderTimeSpan) { Description = options.Description };
-        _repository.Save(reminder);
-        return reminder;
-    }
 }

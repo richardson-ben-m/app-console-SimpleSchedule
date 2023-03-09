@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Input\CommandFactoryTests.cs" />
+    <Compile Remove="API\CommandFactoryTests.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +53,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleSchedule\SimpleSchedule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="API\" />
+    <Folder Include="Logic\Classes\" />
   </ItemGroup>
 
 </Project>

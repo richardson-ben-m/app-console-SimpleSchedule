@@ -1,31 +1,27 @@
-using Logic.Output;
-using Logic.Interfaces;
 using SimpleSchedule;
-using Tests.Input;
 
 namespace Tests;
 
 public class StartupTests
 {
-    private Mock<OutputHandlerBase> _textOutput;
-    private UserInputHandlerMock _inputReader;
-    private Mock<ICommand> _command;
+    private StringWriter _writer;
+    private TextReader _reader;
 
     [SetUp]
-    public void Setup()
+    public void SetUp()
     {
-        _textOutput= new Mock<OutputHandlerBase>();
-        _inputReader= new UserInputHandlerMock();
-        _command = new Mock<ICommand>();
+        _writer = new StringWriter();
+        _reader = new StringReader("");
+
+        Console.SetOut(_writer);
+        Console.SetIn(_reader);
     }
 
     [Test]
     public void AppStarts()
     {
-        var startup = new Startup(_textOutput.Object, _inputReader, _command.Object);
+        Startup.Run();
 
-        startup.Run();
-
-        _textOutput.Verify(e => e.OutputLineOfText(It.IsAny<string>()), Times.AtLeastOnce);
+        _writer.ToString().Should().NotBeNullOrEmpty();
     }
 }

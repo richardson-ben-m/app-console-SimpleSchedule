@@ -24,15 +24,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Classes\SaveCommandOptions.cs" />
     <Compile Remove="CommandFactory.cs" />
     <Compile Remove="CommandType.cs" />
     <Compile Remove="ICommand.cs" />
     <Compile Remove="SaveCommand.cs" />
     <Compile Remove="Startup.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +42,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Classes\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
 </Project>

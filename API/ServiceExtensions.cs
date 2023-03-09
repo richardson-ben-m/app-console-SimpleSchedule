@@ -1,13 +1,11 @@
-﻿using Logic.Input;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Input;
+namespace API;
 
 public static class ServiceExtensions
 {
     public static IServiceCollection RegisterInput(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddSingleton<UserInputHandlerBase>(new UserTextInputHandler());
         return serviceCollection;
     }
 }

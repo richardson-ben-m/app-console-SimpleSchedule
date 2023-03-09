@@ -33,9 +33,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Input\Input.csproj" />
+    <ProjectReference Include="..\API\API.csproj" />
     <ProjectReference Include="..\Logic\Logic.csproj" />
-    <ProjectReference Include="..\Output\Output.csproj" />
     <ProjectReference Include="..\Storage\Storage.csproj" />
   </ItemGroup>
   

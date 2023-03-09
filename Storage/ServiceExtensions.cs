@@ -1,10 +1,8 @@
 ﻿using Logic.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Storage;
-using System.Text.Json;
 
-namespace Input;
+namespace Storage;
 
 public static class ServiceExtensions
 {
