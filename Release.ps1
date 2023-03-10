@@ -1,4 +1,4 @@
-$buildPath = "SimpleSchedule\bin\Release\net7.0"
+$buildPath = "Startup\bin\Release\net7.0"
 $releasePath = "$env:USERPROFILE\SimpleSchedule"
 $fileBase = "SimpleSchedule"
 Write-Output "Releasing program from $buildPath to $releasePath"

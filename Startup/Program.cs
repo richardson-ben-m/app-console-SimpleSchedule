@@ -1,9 +1,8 @@
 ﻿using API;
 using Logic;
-using Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleSchedule;
+using Storage;
 
 class Program
 {
@@ -18,7 +17,7 @@ class Program
         //    .BuildServiceProvider()
         //    .GetRequiredService<Startup>()
         //    .Run();
-        Startup.Run();
+        Startup.Startup.Run();
     }
 
     private static IConfiguration BuildConfiguration()

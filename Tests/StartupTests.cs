@@ -1,5 +1,3 @@
-using SimpleSchedule;
-
 namespace Tests;
 
 public class StartupTests
@@ -20,7 +18,7 @@ public class StartupTests
     [Test]
     public void AppStarts()
     {
-        Startup.Run();
+        Startup.Startup.Run();
 
         _writer.ToString().Should().NotBeNullOrEmpty();
     }
