@@ -13,7 +13,10 @@ class Program
         services
             .AddSingleton(BuildConfiguration());
         ConfigureServices(services);
-        Application.Run();
+
+        var factoryObj = services.BuildServiceProvider().GetService(typeof(CommandFactory)) 
+            ?? throw new ApplicationException("CommandFactory not initialized");
+        App.Run((CommandFactory) factoryObj);
     }
 
     private static IConfiguration BuildConfiguration()
