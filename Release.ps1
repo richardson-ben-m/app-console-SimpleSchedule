@@ -1,6 +1,7 @@
 $buildPath = "Startup\bin\Release\net7.0"
 $releasePath = "$env:USERPROFILE\SimpleSchedule"
-$fileBase = "SimpleSchedule"
+$appName = "SimpleSchedule.API"
+
 Write-Output "Releasing program from $buildPath to $releasePath"
 
 if (!(Test-Path $releasePath -PathType Container)) {
@@ -28,4 +29,4 @@ Foreach ($file in $exes)
 }
 	
 Write-Output "Starting program..."
-Start-Process "$releasePath\$fileBase.exe" 
+Start-Process "$releasePath\$appName.exe" 

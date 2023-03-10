@@ -1,3 +1,5 @@
+using Startup;
+
 namespace Tests;
 
 public class StartupTests
@@ -18,7 +20,7 @@ public class StartupTests
     [Test]
     public void AppStarts()
     {
-        Startup.Startup.Run();
+        Application.Run();
 
         _writer.ToString().Should().NotBeNullOrEmpty();
     }

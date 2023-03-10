@@ -2,6 +2,7 @@
 using Logic;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Startup;
 using Storage;
 
 class Program
@@ -12,12 +13,7 @@ class Program
         services
             .AddSingleton(BuildConfiguration());
         ConfigureServices(services);
-        //services
-        //    .AddSingleton<Startup>()
-        //    .BuildServiceProvider()
-        //    .GetRequiredService<Startup>()
-        //    .Run();
-        Startup.Startup.Run();
+        Application.Run();
     }
 
     private static IConfiguration BuildConfiguration()
