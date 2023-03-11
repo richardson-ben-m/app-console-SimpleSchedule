@@ -22,13 +22,17 @@ public class Controller
 
     private static string CommandFromInput(string input)
     {
-        return input.Split("/")[0];
+        return input.Split("/")[0].Trim();
     }
 
     private static string[] ArgsFromInput(string input)
     {
-        var args = input.Split("/").ToList();
-        args.RemoveAt(0);
-        return args.ToArray();
+        var inArgs = input.Split("/");
+        var outArgs = new string[inArgs.Length - 1];
+        for (int i = 1; i < inArgs.Length; i++)
+        {
+            outArgs[i - 1] = inArgs[i].Trim();
+        }
+        return outArgs;
     }
 }
