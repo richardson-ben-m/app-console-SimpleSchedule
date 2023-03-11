@@ -1,14 +1,14 @@
 using Startup;
 using Tests.API;
 
-namespace Tests;
+namespace Tests.Startup;
 
 public class AppTests
 {
     private StringWriter _writer;
     private TextReader _reader;
 
-    private CommandFactoryMock _commandFactory;
+    private ControllerMock _commandFactory;
 
 
     [SetUp]
@@ -20,7 +20,7 @@ public class AppTests
         Console.SetIn(_reader);
         Console.SetOut(_writer);
 
-        _commandFactory = new CommandFactoryMock();
+        _commandFactory = new ControllerMock();
     }
 
     [Test]

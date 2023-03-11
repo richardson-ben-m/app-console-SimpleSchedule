@@ -1,13 +1,23 @@
 ﻿using API;
 
-namespace Tests.API
+namespace Tests.API;
+
+internal class CommandFactoryMock
 {
-    internal class CommandFactoryMock : CommandFactory
+    private Dictionary<string,ICommand> Commands { get; set; }
+
+    public CommandFactoryMock()
     {
-        public override string RunCommand(string? command)
-        {
-            var args = new string[] { command ?? "" };
-            return new CapsCommand().Run(args);
-        }
+        Commands = new Dictionary<string, ICommand>();    
+    }
+
+    public void AddCommand(string commandName, ICommand commandObject)
+    {
+        Commands.Add(commandName, commandObject);
+    }
+
+    public ICommand FactoryFunction(string command)
+    {
+        return Commands[command];
     }
 }

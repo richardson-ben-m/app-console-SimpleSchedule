@@ -14,9 +14,9 @@ class Program
             .AddSingleton(BuildConfiguration());
         ConfigureServices(services);
 
-        var factoryObj = services.BuildServiceProvider().GetService(typeof(CommandFactory)) 
+        var factoryObj = services.BuildServiceProvider().GetService(typeof(Controller)) 
             ?? throw new ApplicationException("CommandFactory not initialized");
-        App.Run((CommandFactory) factoryObj);
+        App.Run((Controller) factoryObj);
     }
 
     private static IConfiguration BuildConfiguration()
@@ -30,7 +30,7 @@ class Program
     private static void ConfigureServices(IServiceCollection services)
     {
         services
-            .RegisterInput()
+            .RegisterControllers()
             .RegisterStorage()
             .RegisterLogic();
     }
