@@ -14,9 +14,9 @@ class Program
             .AddSingleton(BuildConfiguration());
         ConfigureServices(services);
 
-        var factoryObj = services.BuildServiceProvider().GetService(typeof(Controller)) 
-            ?? throw new ApplicationException("CommandFactory not initialized");
-        App.Run((Controller) factoryObj);
+        var controller = services.BuildServiceProvider().GetService<Controller>()
+            ?? throw new ApplicationException("Controller not initialized");
+        App.Run(controller);
     }
 
     private static IConfiguration BuildConfiguration()

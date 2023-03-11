@@ -2,7 +2,7 @@
 
 namespace Tests.API;
 
-internal class CommandFactoryMock
+internal class CommandFactoryMock : ICommandFactory
 {
     private Dictionary<string,ICommand> Commands { get; set; }
 
@@ -16,8 +16,8 @@ internal class CommandFactoryMock
         Commands.Add(commandName, commandObject);
     }
 
-    public ICommand FactoryFunction(string command)
+    public ICommand GetCommand(string commandName)
     {
-        return Commands[command];
+        return Commands[commandName];
     }
 }

@@ -2,9 +2,9 @@
 
 public class Controller
 {
-    private readonly CommandFactory _commandFactory;
+    private readonly ICommandFactory _commandFactory;
 
-    public Controller(CommandFactory commandFactory)
+    public Controller(ICommandFactory commandFactory)
     {
         _commandFactory = commandFactory;
     }
@@ -14,7 +14,7 @@ public class Controller
         if (input == null) throw new ArgumentException($"Command is empty.");
 
         var commandType = CommandFromInput(input);
-        var command = _commandFactory(commandType);
+        var command = _commandFactory.GetCommand(commandType);
 
         var args = ArgsFromInput(input);
         return command.Run(args);
