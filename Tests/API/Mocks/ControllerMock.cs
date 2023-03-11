@@ -1,6 +1,6 @@
 ﻿using API;
 
-namespace Tests.API
+namespace Tests.API.Mocks
 {
     internal class ControllerMock : Controller
     {
