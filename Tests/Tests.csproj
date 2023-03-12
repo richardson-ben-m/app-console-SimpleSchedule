@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\Classes\" />
+    <Folder Include="Logic\Commands\" />
   </ItemGroup>
 
 </Project>

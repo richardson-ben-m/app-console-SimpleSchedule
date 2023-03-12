@@ -12,6 +12,11 @@ internal class FileReminderRepository : IReminderRepository
     public string ConnectionString { get; }
     private readonly FileInfo _fileInfo;
 
+    /// <summary>
+    /// Initializes the File that will be used for saving <see cref="Reminder"/>s.
+    /// </summary>
+    /// <param name="connectionString">The path of the file.</param>
+    /// <exception cref="ApplicationException"></exception>
     public FileReminderRepository(string connectionString)
     {
         _fileInfo = new FileInfo(connectionString);
@@ -28,6 +33,11 @@ internal class FileReminderRepository : IReminderRepository
         ConnectionString = _fileInfo.FullName;
     }
 
+    /// <summary>
+    /// Saves the <see cref="Reminder"/> to the file.
+    /// </summary>
+    /// <param name="reminder"></param>
+    /// <returns></returns>
     public async Task Save(Reminder reminder)
     {
         var reminderString = JsonSerializer.Serialize(reminder);

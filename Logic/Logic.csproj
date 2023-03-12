@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Classes\SaveCommandOptions.cs" />
+    <Compile Remove="Commands\SaveCommandOptions.cs" />
     <Compile Remove="CommandFactory.cs" />
     <Compile Remove="CommandType.cs" />
     <Compile Remove="ICommand.cs" />
@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\" />
+    <Folder Include="Commands\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
 

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace API;
+﻿namespace API;
 
 public interface ICommand
 {
+    /// <summary>
+    /// Executes the command.
+    /// </summary>
+    /// <param name="args">The arguments to run with.</param>
+    /// <returns>String result</returns>
     string Run(string[] args);
 }

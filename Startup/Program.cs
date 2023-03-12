@@ -7,12 +7,16 @@ using Storage;
 
 class Program
 {
+    /// <summary>
+    /// Entry point of the application. Sets up Configuration and Injection. Calls <see cref="App"/> class to execute.
+    /// </summary>
+    /// <exception cref="ApplicationException"></exception>
     static void Main()
     {
         var services = new ServiceCollection();
         services
             .AddSingleton(BuildConfiguration());
-        ConfigureServices(services);
+        RegisterServices(services);
 
         var controller = services.BuildServiceProvider().GetService<Controller>()
             ?? throw new ApplicationException("Controller not initialized");
@@ -27,7 +31,7 @@ class Program
             .Build();
     }
 
-    private static void ConfigureServices(IServiceCollection services)
+    private static void RegisterServices(IServiceCollection services)
     {
         services
             .RegisterControllers()

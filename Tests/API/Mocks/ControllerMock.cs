@@ -1,16 +1,22 @@
 ﻿using API;
 
-namespace Tests.API.Mocks
-{
-    internal class ControllerMock : Controller
-    {
-        //private static readonly CommandFactoryMock _commandFactoryMock = new();
-        public ControllerMock() : base(new CommandFactoryMock()) { }
+namespace Tests.API.Mocks;
 
-        public override string RunCommand(string? command)
-        {
-            var args = new string[] { command ?? "" };
-            return new CapsCommand().Run(args);
-        }
+/// <summary>
+/// Mock of the <see cref="Controller"/> class, for testing.
+/// </summary>
+internal class ControllerMock : Controller
+{
+    public ControllerMock() : base(new CommandFactoryMock()) { }
+
+    /// <summary>
+    /// Uses a <see cref="CapsCommand"/> to test <see cref="Controller.RunCommand(string?)"/> method functionality.
+    /// </summary>
+    /// <param name="command">A string to capitalize.</param>
+    /// <returns>The string param as all caps.</returns>
+    public override string RunCommand(string? command)
+    {
+        var args = new string[] { command ?? "" };
+        return new CapsCommand().Run(args);
     }
 }
