@@ -1,12 +1,12 @@
-﻿using Logic.Models;
-using Logic.Storage;
+﻿using Logic.Storage;
+using Models;
 
 namespace Tests.Storage
 {
     internal class ReminderRepositoryMock : IReminderRepository
     {
-        public ReminderDto? SavedReminder { get; private set; }
-        public Task Save(ReminderDto reminder)
+        public Reminder? SavedReminder { get; private set; }
+        public Task Save(Reminder reminder)
         {
             SavedReminder = reminder;
             return Task.CompletedTask;

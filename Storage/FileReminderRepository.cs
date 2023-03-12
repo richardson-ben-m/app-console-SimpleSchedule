@@ -1,5 +1,4 @@
-﻿using Logic.Models;
-using Logic.Storage;
+﻿using Logic.Storage;
 using Models;
 using System.Text.Json;
 
@@ -39,7 +38,7 @@ internal class FileReminderRepository : IReminderRepository
     /// </summary>
     /// <param name="reminder"></param>
     /// <returns></returns>
-    public async Task Save(ReminderDto reminder)
+    public async Task Save(Reminder reminder)
     {
         var reminderString = JsonSerializer.Serialize(reminder);
         using StreamWriter file = new(_fileInfo.FullName, append: true);
