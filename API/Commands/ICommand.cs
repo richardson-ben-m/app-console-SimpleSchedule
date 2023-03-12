@@ -1,4 +1,4 @@
-﻿namespace API;
+﻿namespace API.Commands;
 
 public interface ICommand
 {

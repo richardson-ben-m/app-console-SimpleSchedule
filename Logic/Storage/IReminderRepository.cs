@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using Logic.Models;
 
 namespace Logic.Storage;
 
@@ -6,9 +6,9 @@ public interface IReminderRepository
 {
 
     /// <summary>
-    /// Saves the <see cref="Reminder"/> to storage.
+    /// Saves the <see cref="ReminderDto"/> to storage.
     /// </summary>
     /// <param name="reminder"></param>
     /// <returns></returns>
-    Task Save(Reminder reminder);
+    Task Save(ReminderDto reminder);
 }

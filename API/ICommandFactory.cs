@@ -1,4 +1,6 @@
-﻿namespace API;
+﻿using API.Commands;
+
+namespace API;
 
 public interface ICommandFactory
 {

@@ -1,25 +1,26 @@
 ﻿using Logic.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Logic.Models;
+using Tests.Storage;
 
 namespace Tests.Logic.Classes;
 
 internal class ServiceTests
 {
+    private ReminderRepositoryMock _repository;
     private Service _service;
 
     [SetUp]
     public void SetUp()
     {
-        _service = new Service();
+        _repository = new ReminderRepositoryMock();
+        _service = new Service(_repository);
     }
 
     [Test]
     public void SaveReminder_Runs_SavesReminder()
     {
-
+        var reminder = new ReminderDto();
+        _service.SaveReminder(reminder);
+        _repository.SavedReminder.Should().Be(reminder);
     }
 }

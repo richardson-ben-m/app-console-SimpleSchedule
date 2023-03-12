@@ -1,4 +1,4 @@
-﻿using API;
+﻿using API.Commands;
 
 namespace Tests.API.Mocks;
 

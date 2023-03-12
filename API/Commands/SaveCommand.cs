@@ -20,7 +20,15 @@ internal class SaveCommand : ICommand
     /// <returns>'OK' if save was successful. Otherwise, error details.</returns>
     public string Run(string[] args)
     {
-        _service.SaveReminder(new ReminderDto());
-        return "OK";
+        try
+        {
+            var dto = new ReminderDto(args[0]);
+            _service.SaveReminder(dto);
+            return "OK";
+        }
+        catch (Exception e)
+        {
+            return $"Error: {e.Message}";
+        }
     }
 }
