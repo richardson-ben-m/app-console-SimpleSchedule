@@ -1,11 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Logic.Classes;
+using Logic.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Logic;
 
 public static class ServiceExtensions
 {
-    public static IServiceCollection RegisterLogic(this IServiceCollection serviceCollection)
+    public static IServiceCollection RegisterLogic(this IServiceCollection services)
     {
-        return serviceCollection;
+        services.AddScoped<IService, Service>();
+        return services;
     }
 }

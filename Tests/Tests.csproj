@@ -51,8 +51,4 @@
     <ProjectReference Include="..\Startup\Startup.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logic\Commands\" />
-  </ItemGroup>
-
 </Project>

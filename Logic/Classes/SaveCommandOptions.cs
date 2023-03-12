@@ -6,6 +6,9 @@ using Models;
 
 namespace Logic.Classes;
 
+//TODO: Not currently included in the project. Contains validation logic that will be useful later.  
+//  This file will be deleted later once the logic is moved out.
+
 /// <summary>
 /// DTO for saving a Reminder to the repository
 /// </summary>
