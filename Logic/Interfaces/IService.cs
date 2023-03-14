@@ -1,11 +1,12 @@
 ﻿using Logic.Models;
+using Models;
 
 namespace Logic.Interfaces;
 
 public interface IService
 {
     /// <summary>
-    /// Creates a <see cref="Reminder"/> from the given <see cref="ReminderDto"/> and saves it to Storage.
+    /// Saves the given <see cref="ReminderDto"/> to Storage.
     /// </summary>
-    void SaveReminder(ReminderDto reminder);
+    void SaveReminder(Reminder reminder);
 }

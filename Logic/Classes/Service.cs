@@ -1,6 +1,6 @@
 ﻿using Logic.Interfaces;
-using Logic.Models;
 using Logic.Storage;
+using Models;
 
 namespace Logic.Classes;
 
@@ -13,7 +13,7 @@ internal class Service : IService
         _repository = repository;
     }
 
-    public void SaveReminder(ReminderDto reminder)
+    public void SaveReminder(Reminder reminder)
     {
         _repository.Save(reminder);
     }
