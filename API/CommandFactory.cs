@@ -11,8 +11,10 @@ public class CommandFactory : ICommandFactory
     /// <summary>
     /// Add <see cref="ICommand"/> items here to be injected.
     /// </summary>
-    internal static readonly Dictionary<string, Type> RegisteredCommands = new Dictionary<string, Type>
+    internal static readonly Dictionary<string, Type> RegisteredCommands = new()
     {
+        //TODO: add method to ICommand to register themselves.
+        //  See CommandFactoryTests setup to see how to do it.
         {"save", typeof(SaveCommand)}
     };
 

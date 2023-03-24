@@ -2,7 +2,7 @@
 using Logic.Classes;
 using Logic.Models;
 using System.Text.Json;
-using Tests.Storage;
+using Tests.Storage.Mocks;
 
 namespace Tests.API.Commands;
 
@@ -19,7 +19,11 @@ internal class SaveCommandTests
     [Test]
     public void Run_FirstArgIsValidReminderDto_ReturnsOk()
     {
-        var dto = new ReminderDto();
+        var dto = new ReminderDto
+        {
+            Title = "test title",
+            RemindInValue = 1
+        };
         var json = JsonSerializer.Serialize(dto);
 
         var result = _command.Run(new string[] { json });

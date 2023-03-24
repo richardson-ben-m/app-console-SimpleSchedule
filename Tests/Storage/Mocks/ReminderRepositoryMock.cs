@@ -1,7 +1,7 @@
 ﻿using Logic.Storage;
 using Models;
 
-namespace Tests.Storage
+namespace Tests.Storage.Mocks
 {
     internal class ReminderRepositoryMock : IReminderRepository
     {

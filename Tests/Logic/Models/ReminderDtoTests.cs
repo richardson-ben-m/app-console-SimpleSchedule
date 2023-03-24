@@ -1,4 +1,5 @@
 ﻿using Logic.Models;
+using Models;
 using NUnit.Framework;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -69,9 +70,24 @@ internal class ReminderDtoTests
     #region ToReminder
 
     [Test]
-    public void ToReminder_Valid()
+    public void ToReminder_ReturnsReminderWithDtoValues()
     {
-        throw new NotImplementedException();
+        var dto = new ReminderDto
+        {
+            Title = "test title",
+            Description = "test description",
+            RemindInUnits = ReminderTimeUnits.Days,
+            RemindInValue = 1
+        };
+
+        var result = dto.ToReminder();
+
+        result.Should().NotBeNull().And.BeAssignableTo<Reminder>();
+        result.Title.Should().Be(dto.Title);
+        result.Description.Should().Be(dto.Description);
+
+        var timeDiff = result.EndDate - result.StartDate;
+        timeDiff.Days.Should().Be(dto.RemindInValue);
     }
 
     #endregion

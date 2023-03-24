@@ -20,8 +20,6 @@ internal class FileReminderRepository : IReminderRepository
     public FileReminderRepository(string connectionString)
     {
         _fileInfo = new FileInfo(connectionString);
-        if (_fileInfo == null)
-            throw new ApplicationException($"Reminder Repository File Path invalid: {connectionString}");
 
         var directory = _fileInfo.DirectoryName ?? throw new ApplicationException($"Reminder Repository File Path invalid: {connectionString}");
         if (!Directory.Exists(directory))

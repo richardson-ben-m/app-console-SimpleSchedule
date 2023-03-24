@@ -23,7 +23,7 @@ internal class SaveCommand : ICommand
         try
         {
             if (!ReminderDto.TryParse(args[0], out var dto)) 
-                throw new ArgumentException("First argument is not a valid Reminder object.");
+                throw new ArgumentException("First argument must be a valid Reminder object.");
             _service.SaveReminder(dto.ToReminder());
             return "OK";
         }

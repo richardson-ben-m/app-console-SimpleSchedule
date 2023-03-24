@@ -1,7 +1,6 @@
 ﻿using Logic.Classes;
-using Logic.Models;
-using System.Text.Json;
-using Tests.Storage;
+using Models;
+using Tests.Storage.Mocks;
 
 namespace Tests.Logic.Classes;
 
@@ -17,16 +16,11 @@ internal class ServiceTests
         _service = new Service(_repository);
     }
 
-    //[TestCase("title1", "description1", )]
-    //public void SaveReminder_SavesValidReminders(string title, string description, string timeUnits, int timePeriod)
-    //{
-    //    var reminder = new ReminderDto();
-    //    _service.SaveReminder(reminder);
-    //    _repository.SavedReminder.Should().Be(reminder);
-    //}
-
-    //private static object[] TryParseValidTestCases =
-    //{
-    //    new ReminderDto() {Title = "Title1", Description = "Description1", RemindIn = new TimeSpan()}
-    //}
+    [Test]
+    public void SaveReminder_SavesAReminder()
+    {
+        var reminder = new Reminder("test title", new TimeSpan(1, 0, 0));
+        _service.SaveReminder(reminder);
+        _repository.SavedReminder.Should().Be(reminder);
+    }
 }
