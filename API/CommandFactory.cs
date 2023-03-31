@@ -15,7 +15,8 @@ public class CommandFactory : ICommandFactory
     {
         //TODO: add method to ICommand to register themselves.
         //  See CommandFactoryTests setup to see how to do it.
-        {"save", typeof(SaveCommand)}
+        {"save", typeof(SaveCommand)},
+        {"exit", typeof(ExitCommand)}
     };
 
     private readonly IServiceProvider _serviceProvider;
