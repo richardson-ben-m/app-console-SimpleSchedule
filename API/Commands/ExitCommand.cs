@@ -2,6 +2,8 @@
 
 internal class ExitCommand : ICommand
 {
+    public static string RunCommand => "exit";
+
     /// <summary>
     /// Returns a string "ShutDown" to tell the application to close.
     /// </summary>

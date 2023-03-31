@@ -1,4 +1,5 @@
 ﻿using API.Commands;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace Tests.API.Mocks;
 
@@ -7,6 +8,8 @@ namespace Tests.API.Mocks;
 /// </summary>
 internal class CapsCommand : ICommand
 {
+    public static string RunCommand => "caps";
+
     /// <summary>
     /// Provide a string array, it returns the first item in the array with all caps.
     /// </summary>
@@ -15,5 +18,10 @@ internal class CapsCommand : ICommand
     public string Run(string[] args)
     {
         return args[0].ToUpperInvariant();
+    }
+
+    string ICommand.Run(string[] args)
+    {
+        throw new NotImplementedException();
     }
 }

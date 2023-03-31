@@ -1,5 +1,6 @@
 ﻿using API.Commands;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace API;
 
@@ -11,19 +12,14 @@ public class CommandFactory : ICommandFactory
     /// <summary>
     /// Add <see cref="ICommand"/> items here to be injected.
     /// </summary>
-    internal static readonly Dictionary<string, Type> RegisteredCommands = new()
-    {
-        //TODO: add method to ICommand to register themselves.
-        //  See CommandFactoryTests setup to see how to do it.
-        {"save", typeof(SaveCommand)},
-        {"exit", typeof(ExitCommand)}
-    };
+    internal static readonly Dictionary<string, Type> RegisteredCommands = new();
 
     private readonly IServiceProvider _serviceProvider;
 
     public CommandFactory(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
+        RegisterCommands();
     }
 
     /// <summary>
@@ -39,5 +35,26 @@ public class CommandFactory : ICommandFactory
         var commandType = RegisteredCommands[commandName] ?? throw new ArgumentException($"{commandName} is not a valid Command");
         var command = _serviceProvider.GetRequiredService(commandType) as ICommand;
         return command ?? throw new ArgumentException($"{commandName} is not a valid Command");
+    }
+
+    private void RegisterCommands()
+    {
+        RegisteredCommands.Clear();
+        
+        var iCommands = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(ICommand)) && !t.IsInterface);
+        foreach ( var commandType in iCommands)
+        {
+            var prop = commandType.GetProperty("RunCommand");
+            var attr = prop?.GetValue(null);
+            if (attr != null)
+            {
+                var str = attr.ToString();
+                if (str != null)
+                {
+                    RegisteredCommands.Add(str, commandType);
+                }
+            }
+        }
     }
 }

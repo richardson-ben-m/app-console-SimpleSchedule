@@ -9,13 +9,11 @@ internal class CommandFactoryTests
     private ServiceProvider _serviceProvider;
     private CommandFactory _commandFactory;
 
-    private const string CommandName = "test";
-
     [SetUp]
     public void SetUp()
     {
         CommandFactory.RegisteredCommands.Clear();
-        CommandFactory.RegisteredCommands.Add(CommandName, typeof(CapsCommand));
+        CommandFactory.RegisteredCommands.Add(CapsCommand.RunCommand, typeof(CapsCommand));
 
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddSingleton<CapsCommand>();
@@ -26,7 +24,7 @@ internal class CommandFactoryTests
     [Test]
     public void GetCommand_ReceivesValidCommand_ReturnsCommand()
     {
-        var result = _commandFactory.GetCommand(CommandName);
+        var result = _commandFactory.GetCommand(CapsCommand.RunCommand);
 
         result.Should().BeAssignableTo<CapsCommand>();
     }
@@ -44,9 +42,9 @@ internal class CommandFactoryTests
     public void GetCommand_RegisteredClassIsNotICommand_ThrowsArgumentException()
     {
         CommandFactory.RegisteredCommands.Clear();
-        CommandFactory.RegisteredCommands.Add(CommandName, typeof(IServiceProvider));
+        CommandFactory.RegisteredCommands.Add(CapsCommand.RunCommand, typeof(IServiceProvider));
 
-        TestThrowsArgumentException(CommandName);
+        TestThrowsArgumentException(CapsCommand.RunCommand);
     }
 
     private void TestThrowsArgumentException(string commandName)
