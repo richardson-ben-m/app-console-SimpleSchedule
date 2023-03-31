@@ -6,9 +6,9 @@ namespace API.Commands;
 
 internal class SaveCommand : ICommand
 {
-    private readonly IService _service;
+    private readonly IReminderService _service;
 
-    public SaveCommand(IService service)
+    public SaveCommand(IReminderService service)
     {
         _service = service;
     }

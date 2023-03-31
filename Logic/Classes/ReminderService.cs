@@ -4,11 +4,11 @@ using Models;
 
 namespace Logic.Classes;
 
-internal class Service : IService
+internal class ReminderService : IReminderService
 {
     private readonly IReminderRepository _repository;
 
-    public Service(IReminderRepository repository)
+    public ReminderService(IReminderRepository repository)
     {
         _repository = repository;
     }

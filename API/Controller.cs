@@ -16,7 +16,7 @@ public class Controller
     /// Runs a command using the given input.
     /// </summary>
     /// <param name="input">A string separated by '/'. The first element is the command to execute. Other elements are the params used to execute the command.</param>
-    /// <returns>A string resutl from the executed command.</returns>
+    /// <returns>A string result from the executed command.</returns>
     /// <exception cref="ArgumentException"></exception>
     public virtual string RunCommand(string? input)
     {

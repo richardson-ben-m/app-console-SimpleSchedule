@@ -8,7 +8,7 @@ public static class ServiceExtensions
 {
     public static IServiceCollection RegisterLogic(this IServiceCollection services)
     {
-        services.AddScoped<IService, Service>();
+        services.AddScoped<IReminderService, ReminderService>();
         return services;
     }
 }

@@ -3,7 +3,7 @@ using Models;
 
 namespace Logic.Interfaces;
 
-public interface IService
+public interface IReminderService
 {
     /// <summary>
     /// Saves the given <see cref="ReminderDto"/> to Storage.

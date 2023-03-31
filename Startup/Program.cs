@@ -14,8 +14,7 @@ class Program
     static void Main()
     {
         var services = new ServiceCollection();
-        services
-            .AddSingleton(BuildConfiguration());
+        services.AddSingleton(BuildConfiguration());
         RegisterServices(services);
 
         var controller = services.BuildServiceProvider().GetService<Controller>()

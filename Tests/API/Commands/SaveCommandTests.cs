@@ -13,7 +13,7 @@ internal class SaveCommandTests
     [SetUp]
     public void SetUp()
     {
-        _command = new SaveCommand(new Service(new ReminderRepositoryMock()));
+        _command = new SaveCommand(new ReminderService(new ReminderRepositoryMock()));
     }
 
     [Test]
