@@ -21,6 +21,9 @@ internal class CommandMock : ICommand
     /// The Value that should be returned by the <see cref="Run(string[])"/> method.
     /// </summary>
     public string RunReturnValue { get; set; }
+
+    public static string CommandWord => "mock";
+
     private const string DefaultRunReturnValue = "CommandMock.Run";
 
     public CommandMock()

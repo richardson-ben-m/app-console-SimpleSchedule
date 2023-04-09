@@ -8,7 +8,7 @@ namespace Tests.API.Mocks;
 /// </summary>
 internal class CapsCommand : ICommand
 {
-    public static string RunCommand => "caps";
+    public static string CommandWord => "caps";
 
     /// <summary>
     /// Provide a string array, it returns the first item in the array with all caps.

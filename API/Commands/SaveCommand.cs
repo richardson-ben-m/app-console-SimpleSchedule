@@ -6,7 +6,7 @@ namespace API.Commands;
 
 internal class SaveCommand : ICommand
 {
-    public static string RunCommand => "save";
+    public static string CommandWord => "save";
 
     private readonly IReminderService _service;
 

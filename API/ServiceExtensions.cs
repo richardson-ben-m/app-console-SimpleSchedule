@@ -16,6 +16,7 @@ public static class ServiceExtensions
 
     private static IServiceCollection RegisterCommands(this IServiceCollection serviceCollection)
     {
+        CommandFactory.RegisterCommands();
         foreach (var type in CommandFactory.RegisteredCommands.Values)
             serviceCollection.AddTransient(type);
         return serviceCollection;

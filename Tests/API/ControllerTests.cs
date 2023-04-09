@@ -9,7 +9,7 @@ internal class ControllerTests
     private Controller _controller;
     private CommandMock _command;
 
-    private const string ValidCommand = "valid";
+    private readonly string ValidCommand = CommandMock.CommandWord;
 
     [SetUp]
     public void SetUp()

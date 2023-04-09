@@ -1,5 +1,6 @@
 ﻿using API;
 using API.Commands;
+using System.Data;
 
 namespace Tests.API.Mocks;
 
@@ -8,11 +9,11 @@ namespace Tests.API.Mocks;
 /// </summary>
 internal class CommandFactoryMock : ICommandFactory
 {
-    private Dictionary<string, ICommand> Commands { get; set; }
+    private Dictionary<string, object> Commands { get; set; }
 
     public CommandFactoryMock()
     {
-        Commands = new Dictionary<string, ICommand>();
+        Commands = new Dictionary<string, object>();
     }
 
     /// <summary>
@@ -32,6 +33,7 @@ internal class CommandFactoryMock : ICommandFactory
     /// <returns></returns>
     public ICommand GetCommand(string commandName)
     {
-        return Commands[commandName];
+        var command = Commands[commandName] ?? throw new ArgumentException($"{commandName} is not a valid command.");
+        return command as ICommand ?? throw new ArgumentException($"{commandName} is not a valid command.");
     }
 }

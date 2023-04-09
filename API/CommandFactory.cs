@@ -19,7 +19,6 @@ public class CommandFactory : ICommandFactory
     public CommandFactory(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
-        RegisterCommands();
     }
 
     /// <summary>
@@ -37,7 +36,7 @@ public class CommandFactory : ICommandFactory
         return command ?? throw new ArgumentException($"{commandName} is not a valid Command");
     }
 
-    private void RegisterCommands()
+    internal static void RegisterCommands()
     {
         RegisteredCommands.Clear();
         
@@ -45,16 +44,9 @@ public class CommandFactory : ICommandFactory
             .Where(t => t.IsAssignableTo(typeof(ICommand)) && !t.IsInterface);
         foreach ( var commandType in iCommands)
         {
-            var prop = commandType.GetProperty("RunCommand");
-            var attr = prop?.GetValue(null);
-            if (attr != null)
-            {
-                var str = attr.ToString();
-                if (str != null)
-                {
-                    RegisteredCommands.Add(str, commandType);
-                }
-            }
+            var commandString = commandType.GetProperty("CommandWord")?.GetValue(null)?.ToString();
+            if (commandString != null)
+                    RegisteredCommands.Add(commandString, commandType);
         }
     }
 }

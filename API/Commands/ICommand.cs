@@ -5,7 +5,7 @@ public interface ICommand
     /// <summary>
     /// The input string that executes the command.
     /// </summary>
-    public abstract static string RunCommand { get; }
+    public abstract static string CommandWord { get; }
 
     /// <summary>
     /// Executes the command.
