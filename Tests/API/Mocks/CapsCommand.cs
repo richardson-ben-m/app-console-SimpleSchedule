@@ -1,5 +1,4 @@
 ﻿using API.Commands;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace Tests.API.Mocks;
 
@@ -18,10 +17,5 @@ internal class CapsCommand : ICommand
     public string Run(string[] args)
     {
         return args[0].ToUpperInvariant();
-    }
-
-    string ICommand.Run(string[] args)
-    {
-        throw new NotImplementedException();
     }
 }

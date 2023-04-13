@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using Startup;
 using Tests.API.Mocks;
 
@@ -8,8 +9,7 @@ public class AppTests
     private StringWriter _writer;
     private TextReader _reader;
 
-    private ControllerMock _commandFactory;
-
+    private ControllerMock _controller;
 
     [SetUp]
     public void SetUp()
@@ -20,13 +20,13 @@ public class AppTests
         Console.SetIn(_reader);
         Console.SetOut(_writer);
 
-        _commandFactory = new ControllerMock();
+        _controller = new ControllerMock();
     }
 
     [Test]
     public void Starts()
     {
-        App.Run(_commandFactory);
+        App.Run(_controller);
 
         _writer.ToString().Should().NotBeNullOrEmpty();
     }
@@ -40,10 +40,26 @@ public class AppTests
         _reader = new StringReader(inputString);
         Console.SetIn(_reader);
 
-        App.Run(_commandFactory);
+        App.Run(_controller);
 
-        var result = _writer.ToString().TrimEnd();
+        _writer.ToString().TrimEnd().Should().EndWith(expected);
+    }
 
-        result.Should().EndWith(expected);
+    [Test]
+    public void ControllerReturnsShutDown_AppCloses()
+    {
+        var inputString = "ShutDown";
+        Console.SetIn(new StringReader(inputString));
+        _controller.SetCommandToRun(new EchoCommand());
+
+        App.Run(_controller);
+
+        _writer.ToString().TrimEnd().Should().EndWith(inputString);
+    }
+
+    [Test]
+    public void ControllerReturnsAnythingButShutDown_AppContinuesRunning()
+    {
+
     }
 }
