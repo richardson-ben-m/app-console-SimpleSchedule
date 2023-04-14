@@ -7,59 +7,56 @@ namespace Tests.Startup;
 public class AppTests
 {
     private StringWriter _writer;
-    private TextReader _reader;
 
     private ControllerMock _controller;
+
+    private readonly string newLine = Environment.NewLine;
+    private readonly string shutDownCommand = "ShutDown";
 
     [SetUp]
     public void SetUp()
     {
         _writer = new StringWriter();
-        _reader = new StringReader("");
 
-        Console.SetIn(_reader);
         Console.SetOut(_writer);
 
         _controller = new ControllerMock();
     }
 
-    [Test]
-    public void Starts()
+    [TestCase(0)]
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(99)]
+    public void AppRunsUntilReceivesShutDownCommand(int numberOfCommands)
     {
-        App.Run(_controller);
-
-        _writer.ToString().Should().NotBeNullOrEmpty();
-    }
-
-    [TestCase("abc")]
-    [TestCase("read this")]
-    public void RespondsToInput(string inputString)
-    {
-        var expected = inputString.ToUpper();
-
-        _reader = new StringReader(inputString);
-        Console.SetIn(_reader);
+        var expected = SetUpCommandsToRun(numberOfCommands);
 
         App.Run(_controller);
 
         _writer.ToString().TrimEnd().Should().EndWith(expected);
     }
 
-    [Test]
-    public void ControllerReturnsShutDown_AppCloses()
+    private string SetUpCommandsToRun(int numberOfCommands)
     {
-        var inputString = "ShutDown";
-        Console.SetIn(new StringReader(inputString));
-        _controller.SetCommandToRun(new EchoCommand());
+        if (numberOfCommands == 0) 
+            return SetUpConsoleInput(null);
 
-        App.Run(_controller);
+        var inputString = "cmd";
+        string commands = inputString;
 
-        _writer.ToString().TrimEnd().Should().EndWith(inputString);
+        for (int i = 1; i < numberOfCommands; i++)
+        {
+            commands += newLine + inputString;
+        }
+        return SetUpConsoleInput(commands);
     }
 
-    [Test]
-    public void ControllerReturnsAnythingButShutDown_AppContinuesRunning()
+    private string SetUpConsoleInput(string? input)
     {
-
+        var cmd = shutDownCommand;
+        if (input != null) cmd = input + newLine + cmd;
+        Console.SetIn(new StringReader(cmd));
+        return cmd;
     }
+
 }

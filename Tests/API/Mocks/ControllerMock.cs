@@ -8,14 +8,14 @@ namespace Tests.API.Mocks;
 /// </summary>
 internal class ControllerMock : Controller
 {
-    private ICommand _commandToRun = new CapsCommand();
+    private ICommand _commandToRun = new EchoCommand();
 
     public ControllerMock() : base(new CommandFactoryMock()) { }
 
     /// <summary>
     /// Uses a <see cref="ICommand"/> to test <see cref="Controller.RunCommand(string?)"/> method functionality.
     /// Command can be set by <see cref="SetCommandToRun(ICommand)"/>.
-    /// If not set, default is <see cref="CapsCommand"/>.
+    /// If not set, default is <see cref="EchoCommand"/>.
     /// </summary>
     /// <param name="command">The command string.</param>
     /// <returns>The return value from the ICommand object.</returns>

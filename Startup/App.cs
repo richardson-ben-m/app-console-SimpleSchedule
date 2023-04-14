@@ -1,4 +1,5 @@
 ﻿using API;
+using Microsoft.Extensions.Configuration;
 
 namespace Startup;
 
@@ -15,9 +16,13 @@ public class App
     {
         Console.WriteLine("SimpleSchedule.API.exe is running.");
 
-        var inputString = Console.ReadLine();     
-        Console.WriteLine(controller.RunCommand(inputString));
+        string? result;
+        do
+        {
+            var inputString = Console.ReadLine();
+            result = controller.RunCommand(inputString);
+            Console.WriteLine(result);
 
-        Console.ReadLine();
+        } while (result != "ShutDown");
     }
 }
