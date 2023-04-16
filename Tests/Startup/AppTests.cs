@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using Startup;
 using Tests.API.Mocks;
 
