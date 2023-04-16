@@ -8,16 +8,16 @@ public static class ServiceExtensions
     public static IServiceCollection RegisterControllers(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton<Controller>();
-        serviceCollection.AddSingleton<ICommandFactory, CommandFactory>();
+        serviceCollection.AddSingleton<IEndpointFactory, EndpointFactory>();
 
-        serviceCollection.RegisterCommands();
+        serviceCollection.RegisterEndpoints();
         return serviceCollection;
     }
 
-    private static IServiceCollection RegisterCommands(this IServiceCollection serviceCollection)
+    private static IServiceCollection RegisterEndpoints(this IServiceCollection serviceCollection)
     {
-        CommandFactory.RegisterCommands();
-        foreach (var type in CommandFactory.RegisteredCommands.Values)
+        EndpointFactory.RegisterEndpoints();
+        foreach (var type in EndpointFactory.RegisteredEndpoints.Values)
             serviceCollection.AddTransient(type);
         return serviceCollection;
     }

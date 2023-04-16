@@ -24,15 +24,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Classes\SaveCommandOptions.cs" />
-    <Compile Remove="CommandFactory.cs" />
-    <Compile Remove="CommandType.cs" />
-    <Compile Remove="ICommand.cs" />
-    <Compile Remove="SaveCommand.cs" />
-    <Compile Remove="Startup.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <InternalsVisibleTo Include="Tests" />
   </ItemGroup>
 

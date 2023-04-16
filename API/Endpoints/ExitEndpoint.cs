@@ -1,15 +1,15 @@
-﻿namespace API.Commands;
+﻿namespace API.Endpoints;
 
-internal class ExitCommand : ICommand
+internal class ExitEndpoint : IEndpoint
 {
-    public static string CommandWord => "exit";
+    public static string Address => "exit";
 
     /// <summary>
     /// Returns a string "ShutDown" to tell the application to close.
     /// </summary>
     /// <param name="args"></param>
     /// <returns></returns>
-    public string Run(string[] args)
+    public string CallEndpoint(string[] args)
     {
         return "ShutDown";
     }

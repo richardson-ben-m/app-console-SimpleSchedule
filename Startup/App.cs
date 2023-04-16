@@ -9,7 +9,7 @@ namespace Startup;
 public class App
 {
     /// <summary>
-    /// Run the application.
+    /// CallEndpoint the application.
     /// </summary>
     /// <param name="controller"></param>
     public static void Run(Controller controller)
@@ -20,7 +20,7 @@ public class App
         do
         {
             var inputString = Console.ReadLine();
-            result = controller.RunCommand(inputString);
+            result = controller.TriggerEndpoint(inputString);
             Console.WriteLine(result);
 
         } while (result != "ShutDown");

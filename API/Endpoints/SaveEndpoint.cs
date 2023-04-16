@@ -2,17 +2,17 @@
 using Logic.Models;
 using Models;
 
-namespace API.Commands;
+namespace API.Endpoints;
 
-internal class SaveCommand : ICommand
+internal class SaveEndpoint : IEndpoint
 {
-    public static string CommandWord => "save";
+    public static string Address => "save";
 
-    private readonly IReminderService _service;
+    private readonly IReminderCommandService _reminderService;
 
-    public SaveCommand(IReminderService service)
+    public SaveEndpoint(IReminderCommandService service)
     {
-        _service = service;
+        _reminderService = service;
     }
 
     /// <summary>
@@ -20,13 +20,13 @@ internal class SaveCommand : ICommand
     /// </summary>
     /// <param name="args">The <see cref="Reminder"/> to save, formatted as Json.</param>
     /// <returns>'OK' if save was successful. Otherwise, error details.</returns>
-    public string Run(string[] args)
+    public string CallEndpoint(string[] args)
     {
         try
         {
-            if (!ReminderDto.TryParse(args[0], out var dto)) 
+            if (!ReminderCommandDto.TryParse(args[0], out var dto))
                 throw new ArgumentException("First argument must be a valid Reminder object.");
-            _service.SaveReminder(dto.ToReminder());
+            _reminderService.SaveReminder(dto.ToReminder());
             return "OK";
         }
         catch (Exception e)

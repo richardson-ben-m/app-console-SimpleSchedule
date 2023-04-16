@@ -1,35 +1,35 @@
 ﻿namespace API;
 
 /// <summary>
-/// Class for running commands using string inputs.
+/// Class for triggering <see cref="IEndpoint"/>s using string inputs.
 /// </summary>
 public class Controller
 {
-    private readonly ICommandFactory _commandFactory;
+    private readonly IEndpointFactory _endpointFactory;
 
-    public Controller(ICommandFactory commandFactory)
+    public Controller(IEndpointFactory endpointFactory)
     {
-        _commandFactory = commandFactory;
+        _endpointFactory = endpointFactory;
     }
 
     /// <summary>
-    /// Runs a command using the given input.
+    /// Triggers an endpoint using the given input.
     /// </summary>
-    /// <param name="input">A string separated by '/'. The first element is the command to execute. Other elements are the params used to execute the command.</param>
-    /// <returns>A string result from the executed command.</returns>
+    /// <param name="input">A string separated by '/'. The first element is the endpoint to trigger. Other elements are the params used when the endpoint is triggered.</param>
+    /// <returns>A string result from the executed endpoint.</returns>
     /// <exception cref="ArgumentException"></exception>
-    public virtual string RunCommand(string? input)
+    public virtual string TriggerEndpoint(string? input)
     {
-        if (input == null) throw new ArgumentException($"Command is empty.");
+        if (input == null) throw new ArgumentException($"No Endpoint was called.");
 
-        var commandType = CommandFromInput(input);
-        var command = _commandFactory.GetCommand(commandType);
+        var endpointName = ReadEndpointFromInput(input);
+        var endpoint = _endpointFactory.GetEndpoint(endpointName);
 
         var args = ArgsFromInput(input);
-        return command.Run(args);
+        return endpoint.CallEndpoint(args);
     }
 
-    private static string CommandFromInput(string input)
+    private static string ReadEndpointFromInput(string input)
     {
         return input.Split("/")[0].Trim();
     }

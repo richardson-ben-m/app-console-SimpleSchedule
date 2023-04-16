@@ -3,10 +3,10 @@ using Models;
 
 namespace Logic.Interfaces;
 
-public interface IReminderService
+public interface IReminderCommandService
 {
     /// <summary>
-    /// Saves the given <see cref="ReminderDto"/> to Storage.
+    /// Saves the given <see cref="ReminderCommandDto"/> to Storage.
     /// </summary>
     void SaveReminder(Reminder reminder);
 }

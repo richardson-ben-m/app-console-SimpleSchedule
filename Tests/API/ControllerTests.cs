@@ -5,61 +5,61 @@ namespace Tests.API;
 
 internal class ControllerTests
 {
-    private CommandFactoryMock _commandFactory;
+    private EndpointFactoryMock _endpointFactory;
     private Controller _controller;
-    private CommandMock _command;
+    private EndpointMock _endpoint;
 
-    private readonly string ValidCommand = CommandMock.CommandWord;
+    private readonly string ValidEndpoint = EndpointMock.Address;
 
     [SetUp]
     public void SetUp()
     {
-        _command = new CommandMock();
-        _commandFactory = new CommandFactoryMock();
-        _commandFactory.AddCommand(ValidCommand, _command);
-        _controller = new Controller(_commandFactory);
+        _endpoint = new EndpointMock();
+        _endpointFactory = new EndpointFactoryMock();
+        _endpointFactory.AddEndpoint(ValidEndpoint, _endpoint);
+        _controller = new Controller(_endpointFactory);
     }
 
     [Test]
-    public void RunCommand_ReceivesValidCommand_ReturnsOutputFromCommand()
+    public void TriggerEndpoint_ReceivesValidEndpoint_ReturnsOutputFromEndpoint()
     {
-        var result = _controller.RunCommand(ValidCommand);
+        var result = _controller.TriggerEndpoint(ValidEndpoint);
 
-        _command.RunWasCalled.Should().BeTrue();
-        _command.RunArgs.Should().BeEmpty();
-        result.Should().Be(_command.RunReturnValue);
+        _endpoint.EndpointWasCalled.Should().BeTrue();
+        _endpoint.CallEndpointArgs.Should().BeEmpty();
+        result.Should().Be(_endpoint.CallEndpointReturnValue);
     }
 
     [Test]
-    public void RunCommand_ReceivesNull_ThrowsArgumentException()
+    public void TriggerEndpoint_ReceivesNull_ThrowsArgumentException()
     {
         var wasThrown = false;
         try
         {
-            _controller.RunCommand(null);
+            _controller.TriggerEndpoint(null);
         }
         catch (ArgumentException)
         {
             wasThrown = true;
         }
         wasThrown.Should().BeTrue();
-        _command.RunWasCalled.Should().BeFalse();
+        _endpoint.EndpointWasCalled.Should().BeFalse();
     }
 
     [Test]
-    public void RunCommand_ReceivesStringWithValidCommandAndParams_ReturnsOutputFromCommand()
+    public void TriggerEndpoint_ReceivesStringWithValidEndpointAndParams_ReturnsOutputFromEndpoint()
     {
         var arg1 = "arg1";
         var arg2 = "arg2";
-        var commandWithArgs = $"{ValidCommand} /{arg1} /{arg2}";
+        var endpointWithArgs = $"{ValidEndpoint} /{arg1} /{arg2}";
 
-        var result = _controller.RunCommand(commandWithArgs);
+        var result = _controller.TriggerEndpoint(endpointWithArgs);
 
-        _command.RunWasCalled.Should().BeTrue();
-        _command.RunArgs.Should().HaveCount(2)
+        _endpoint.EndpointWasCalled.Should().BeTrue();
+        _endpoint.CallEndpointArgs.Should().HaveCount(2)
             .And.Contain(arg1)
             .And.Contain(arg2);
-        result.Should().Be(_command.RunReturnValue);
+        result.Should().Be(_endpoint.CallEndpointReturnValue);
     }
 
 }

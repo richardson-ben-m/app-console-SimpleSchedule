@@ -1,20 +1,20 @@
-﻿using API.Commands;
+﻿using API.Endpoints;
 
 namespace Tests.API.Mocks;
 
 /// <summary>
-/// An instance of ICommand that just returns the command string.
+/// An instance of IEndpoint that just returns the address string.
 /// </summary>
-internal class EchoCommand : ICommand
+internal class EchoEndpoint : IEndpoint
 {
-    public static string CommandWord => "echo";
+    public static string Address => "echo";
 
     /// <summary>
     /// Provide a string array, it returns the first item in the array as is.
     /// </summary>
     /// <param name="args"></param>
     /// <returns></returns>
-    public string Run(string[] args)
+    public string CallEndpoint(string[] args)
     {
         return args[0];
     }

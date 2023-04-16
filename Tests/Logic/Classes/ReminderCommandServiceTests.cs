@@ -4,16 +4,16 @@ using Tests.Storage.Mocks;
 
 namespace Tests.Logic.Classes;
 
-internal class ReminderServiceTests
+internal class ReminderCommandServiceTests
 {
     private ReminderRepositoryMock _repository;
-    private ReminderService _service;
+    private ReminderCommandService _service;
 
     [SetUp]
     public void SetUp()
     {
         _repository = new ReminderRepositoryMock();
-        _service = new ReminderService(_repository);
+        _service = new ReminderCommandService(_repository);
     }
 
     [Test]

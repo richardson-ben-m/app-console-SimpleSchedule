@@ -10,7 +10,7 @@ public enum ReminderTimeUnits
     Days
 }
 
-public class ReminderDto
+public class ReminderCommandDto
 {
     public string Title { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -18,22 +18,22 @@ public class ReminderDto
     public ReminderTimeUnits RemindInUnits { get; set; }
     public ushort RemindInValue { get; set; }
 
-    public ReminderDto()
+    public ReminderCommandDto()
     {
         Title = string.Empty;
     }
 
-    public static bool TryParse(string? json, out ReminderDto result)
+    public static bool TryParse(string? json, out ReminderCommandDto result)
     {
-        result = new ReminderDto();
+        result = new ReminderCommandDto();
 
         if (string.IsNullOrEmpty(json)) return false;
 
-        ReminderDto? dto;
+        ReminderCommandDto? dto;
 
         try
         {
-            dto = JsonSerializer.Deserialize<ReminderDto>(json, new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } });
+            dto = JsonSerializer.Deserialize<ReminderCommandDto>(json, new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } });
         }
         catch (Exception)
         {

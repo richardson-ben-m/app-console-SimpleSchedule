@@ -26,36 +26,36 @@ public class AppTests
     [TestCase(1)]
     [TestCase(2)]
     [TestCase(99)]
-    public void AppRunsUntilReceivesShutDownCommand(int numberOfCommands)
+    public void AppRunsUntilReceivesShutDownCommand(int numberOfEndpointCalls)
     {
-        var expected = SetUpCommandsToRun(numberOfCommands);
+        var expected = SetUpEndpointCalls(numberOfEndpointCalls);
 
         App.Run(_controller);
 
         _writer.ToString().TrimEnd().Should().EndWith(expected);
     }
 
-    private string SetUpCommandsToRun(int numberOfCommands)
+    private string SetUpEndpointCalls(int numberOfEndpointCalls)
     {
-        if (numberOfCommands == 0) 
+        if (numberOfEndpointCalls == 0) 
             return SetUpConsoleInput(null);
 
-        var inputString = "cmd";
-        string commands = inputString;
+        var inputString = "endpointCall";
+        string endpointCalls = inputString;
 
-        for (int i = 1; i < numberOfCommands; i++)
+        for (int i = 1; i < numberOfEndpointCalls; i++)
         {
-            commands += newLine + inputString;
+            endpointCalls += newLine + inputString;
         }
-        return SetUpConsoleInput(commands);
+        return SetUpConsoleInput(endpointCalls);
     }
 
     private string SetUpConsoleInput(string? input)
     {
-        var cmd = shutDownCommand;
-        if (input != null) cmd = input + newLine + cmd;
-        Console.SetIn(new StringReader(cmd));
-        return cmd;
+        var commandString = shutDownCommand;
+        if (input != null) commandString = input + newLine + commandString;
+        Console.SetIn(new StringReader(commandString));
+        return commandString;
     }
 
 }

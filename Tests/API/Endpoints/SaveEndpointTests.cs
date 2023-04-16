@@ -1,47 +1,47 @@
-﻿using API.Commands;
+﻿using API.Endpoints;
 using Logic.Classes;
 using Logic.Models;
 using System.Text.Json;
 using Tests.Storage.Mocks;
 
-namespace Tests.API.Commands;
+namespace Tests.API.Endpoints;
 
-internal class SaveCommandTests
+internal class SaveEndpointTests
 {
-    private SaveCommand _command;
+    private SaveEndpoint _endpoint;
 
     [SetUp]
     public void SetUp()
     {
-        _command = new SaveCommand(new ReminderService(new ReminderRepositoryMock()));
+        _endpoint = new SaveEndpoint(new ReminderCommandService(new ReminderRepositoryMock()));
     }
 
     [Test]
-    public void Run_FirstArgIsValidReminderDto_ReturnsOk()
+    public void CallEndpoint_FirstArgIsValidReminderDto_ReturnsOk()
     {
-        var dto = new ReminderDto
+        var dto = new ReminderCommandDto
         {
             Title = "test title",
             RemindInValue = 1
         };
         var json = JsonSerializer.Serialize(dto);
 
-        var result = _command.Run(new string[] { json });
+        var result = _endpoint.CallEndpoint(new string[] { json });
 
         result.Should().Be("OK");
     }
 
     [Test]
-    public void Run_FirstArgIsNotValidReminderDto_ReturnsErrorDetails() =>
+    public void CallEndpoint_FirstArgIsNotValidReminderDto_ReturnsErrorDetails() =>
         TestForErrorDetails(new string[] { "not valid" });
 
     [Test]
-    public void Run_NoArgPassed_ReturnsErrorDetails() =>
+    public void CallEndpoint_NoArgPassed_ReturnsErrorDetails() =>
         TestForErrorDetails(Array.Empty<string>());
 
     private void TestForErrorDetails(string[] args)
     {
-        var result = _command.Run(args);
+        var result = _endpoint.CallEndpoint(args);
         result.Should().NotBe("OK").And.StartWith("Error");
     }
 }
