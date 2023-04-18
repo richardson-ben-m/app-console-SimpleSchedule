@@ -26,7 +26,7 @@ internal class FileReminderRepository : IReminderRepository
             Directory.CreateDirectory(directory);
 
         if (!_fileInfo.Exists)
-            _fileInfo.Create();
+            _fileInfo.Create().Close();
 
         ConnectionString = _fileInfo.FullName;
     }
@@ -38,8 +38,7 @@ internal class FileReminderRepository : IReminderRepository
     /// <returns></returns>
     public async Task Save(Reminder reminder)
     {
-        var reminderString = JsonSerializer.Serialize(reminder);
         using StreamWriter file = new(_fileInfo.FullName, append: true);
-        await file.WriteLineAsync(reminderString);
+        await file.WriteLineAsync(JsonSerializer.Serialize(reminder));
     }
 }

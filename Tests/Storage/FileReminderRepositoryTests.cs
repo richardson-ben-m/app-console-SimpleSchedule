@@ -1,4 +1,6 @@
-﻿using Storage;
+﻿using Models;
+using Storage;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Tests.Storage;
 
@@ -7,6 +9,8 @@ internal class FileReminderRepositoryTests
     private string _fileName = "testfile.txt";
     private FileInfo? _fileInfo;
     private FileReminderRepository? _repository;
+    
+    #region Constructor
 
     [Test]
     public void Constructor_ValidConnectionStringInput_SetsConnectionStringProperty()
@@ -45,7 +49,7 @@ internal class FileReminderRepositoryTests
 
         if (_fileInfo.Exists) _fileInfo.Delete();
 
-        if (fullDirectoryPath != null && Directory.Exists(fullDirectoryPath)) 
+        if (fullDirectoryPath != null && Directory.Exists(fullDirectoryPath))
             Directory.Delete(fullDirectoryPath);
 
         Directory.Exists(fullDirectoryPath).Should().BeFalse();
@@ -74,6 +78,31 @@ internal class FileReminderRepositoryTests
         _fileInfo.Refresh();
         _fileInfo.Exists.Should().BeTrue();
     }
+
+    #endregion
+
+    #region Save
+    [Test]
+    public async Task Save_AppendsReminderToFile()
+    {
+        _fileInfo = new FileInfo(_fileName);
+        _repository = new FileReminderRepository(_fileInfo.FullName);
+        var startLength = GetFileLength();
+        var reminder = new Reminder("testTile", new TimeSpan(1));
+
+        await _repository.Save(reminder);
+
+        var endLength = GetFileLength();
+        endLength.Should().BeGreaterThan(startLength);
+    }
+
+    private int GetFileLength()
+    {
+        if (_fileInfo == null || !_fileInfo.Exists) return 0;
+        using StreamReader sr = new(_fileInfo.FullName);
+        return sr.ReadToEnd().Length;
+    }
+    #endregion
 
     [TearDown]
     public void TearDown()
